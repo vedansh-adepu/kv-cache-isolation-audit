@@ -1,0 +1,6 @@
+Gateway policy and original tests are MIT licensed. tests/conftest.py adapts
+fixture constructors from vLLM tests/v1/core/test_prefix_caching.py at commit
+5df63a7203cdb9328d824a27b682e77c7b9928be. That file is Apache-2.0 licensed;
+its notice is retained and the license is in LICENSES/Apache-2.0.txt.
+No vLLM engine implementation is vendored. Engine imports use a separate
+pinned source checkout. Public synthetic keys are test inputs, never credentials.

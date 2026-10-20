@@ -1,0 +1,40 @@
+{
+  "hardware": "Apple M2, 8 cores, 8 GB RAM; macOS arm64 CPU",
+  "source_commit": "5df63a7203cdb9328d824a27b682e77c7b9928be",
+  "maximum_process_rss_bytes": 447627264,
+  "source_sha256": {
+    "vllm/v1/request.py": "dd7c30bf8b0894dc123a739c299c0133566f8cc075b081e45905f1c29506e69d",
+    "vllm/utils/hashing.py": "2e8fcc81dd675ed0fba49de8fd8658b4dab9ae26a917edaf5164bf266c56b4df",
+    "vllm/v1/core/kv_cache_utils.py": "af4164bca819f1cdc416077522a7019936fd38a523a482283eb91b08dae0e57a",
+    "vllm/v1/core/kv_cache_manager.py": "d08315437c6b07040d1b7e12d7bd7d6e966c976a286f05a9788098cfdd9754c7",
+    "tests/v1/core/test_prefix_caching.py": "72e355a87950d2d7e13645103b8e83d714c78c9281180aea85b4d7586b7de32f"
+  },
+  "scope": "real Request/hash/cache-manager metadata and in-process synthetic-principal policy only; no model, GPU, timing or deployed authentication",
+  "date": "2026-10-19",
+  "python": "3.12.15",
+  "torch": "2.13.0",
+  "pytest": "9.1.1",
+  "environment_sha256": "a9707ac0bc9fc2db67c803c662408b9aebfd316b902d4de0979ecf8f54f9ce09",
+  "runs": {
+    "pilot": {
+      "exit": 0,
+      "summary": "3 passed, 15 warnings in 0.65s",
+      "peak_process_rss_bytes": 367689728
+    },
+    "full": {
+      "exit": 0,
+      "summary": "29 passed, 15 warnings in 0.24s",
+      "peak_process_rss_bytes": 374439936
+    },
+    "always-miss": {
+      "exit": 1,
+      "summary": "28 failed, 1 passed, 15 warnings in 0.31s",
+      "peak_process_rss_bytes": 447627264
+    },
+    "broken-tenant": {
+      "exit": 1,
+      "summary": "13 failed, 16 passed, 15 warnings in 0.46s",
+      "peak_process_rss_bytes": 368754688
+    }
+  }
+}
