@@ -6,7 +6,7 @@ from conftest import A, B, KEY
 def test_pilot_normalize_prime_repeat(engine):
     engine.prime()
     request = engine.request(cache_salt="untrusted")
-    assert request.cache_salt == engine.gateway.salt(A)
+    assert request.cache_salt == engine.gateway.salt(A), "tenant namespace isolation: request uses the trusted tenant salt"
     assert engine.lookup(request) == 48, "same-tenant hit control"
 
 def test_pilot_forged_salt_and_control(engine):
