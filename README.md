@@ -1,5 +1,7 @@
 # KV cache isolation audit
 
+[![CPU correctness](https://github.com/vedansh-adepu/kv-cache-isolation-audit/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/vedansh-adepu/kv-cache-isolation-audit/actions/workflows/ci.yml)
+
 This CPU correctness harness binds synthetic authenticated principals to tenant
 cache namespaces at an in-process gateway. It uses the real vLLM Request,
 block hashing and KVCacheManager from pinned v0.32.0 source. It checks
