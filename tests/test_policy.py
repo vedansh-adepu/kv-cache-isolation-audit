@@ -19,13 +19,13 @@ def test_client_salt_stripped(engine):
     engine.prime()
     for value in [None, "chosen", engine.gateway.salt(B), {"hostile": True}]:
         req = engine.request(cache_salt=value)
-        assert req.cache_salt == engine.gateway.salt(A)
+        assert req.cache_salt == engine.gateway.salt(A), "tenant namespace isolation: client salt replaced by trusted tenant salt"
         assert engine.lookup(req) == 48, "same-tenant hit control"
     miss(engine)
 
 def test_missing_salt_injected(engine):
     request = engine.request()
-    assert request.cache_salt and request.cache_salt == engine.gateway.salt(A)
+    assert request.cache_salt and request.cache_salt == engine.gateway.salt(A), "tenant namespace isolation: missing salt bound to trusted tenant"
     engine.prime()
     hit(engine)
     miss(engine)
@@ -70,7 +70,7 @@ def test_rotation_cold_then_warm_and_no_fallback(engine):
     rotated = Gateway(bytes(reversed(KEY)), epoch="e2")
     replica = replace(rotated)
     assert replica.salt(A) == rotated.salt(A) != engine.gateway.salt(A)
-    assert engine.lookup(engine.request(gateway=rotated, cache_salt=engine.gateway.salt(A), epoch="e1")) == 0
+    assert engine.lookup(engine.request(gateway=rotated, cache_salt=engine.gateway.salt(A), epoch="e1")) == 0, "key-epoch isolation: rotated key cannot reuse the old namespace"
     hit(engine)  # Existing old-epoch request path remains isolated and usable.
     engine.prime(gateway=rotated)
     hit(engine, gateway=replica)
